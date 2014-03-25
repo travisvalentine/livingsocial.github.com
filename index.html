@@ -30,7 +30,6 @@
       }
 
       function addRepo(repo) {
-        console.log(repo);
         var $item = $("<li>").addClass("repo grid-1 " + (repo.language || '').toLowerCase());
         var $link = $("<a>").attr("href", repo.html_url).appendTo($item);
         $link.append($("<h2>").text(repo.name));
@@ -73,7 +72,9 @@
               });
 
               $.each(repos, function (i, repo) {
-                addRepo(repo);
+                if(repo.fork == false) {
+                  addRepo(repo);
+                }
               });
 
               // Sort by most-recently pushed to.
